@@ -1,19 +1,19 @@
 package io.karon.discordbot.infrastructure.output_adapter
 
-import io.karon.discordbot.domain.output_port.GuildMessage
-import io.karon.discordbot.domain.output_port.GuildTextChannel
-import io.karon.discordbot.domain.output_port.MemberRole
+import io.karon.discordbot.domain.output_port.MessagePort
+import io.karon.discordbot.domain.output_port.GuildTextChannelPort
+import io.karon.discordbot.domain.output_port.MemberRolePort
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.TextChannel
 
-class GuildTextChannelAdapter(private val textChannel: TextChannel) : GuildTextChannel {
+class GuildTextChannelAdapter(private val textChannel: TextChannel) : GuildTextChannelPort {
 	override fun sendMessage(message: String) {
 		textChannel.sendMessage(message).queue()
 	}
 
-	override fun sendMessage(message: String, onSuccess: (GuildMessage) -> Unit) {
+	override fun sendMessage(message: String, onSuccess: (MessagePort) -> Unit) {
 		textChannel.sendMessage(message).queue { createdMessage ->
-			onSuccess(GuildMessageAdapter(createdMessage))
+			onSuccess(MessageAdapter(createdMessage))
 		}
 	}
 
@@ -30,7 +30,7 @@ class GuildTextChannelAdapter(private val textChannel: TextChannel) : GuildTextC
 			}
 	}
 
-	override fun giveAccessToRole(memberRole: MemberRole) {
+	override fun giveAccessToRole(memberRole: MemberRolePort) {
 		textChannel.guild
 			.getRoleById(memberRole.getRoleId())
 			?.let {

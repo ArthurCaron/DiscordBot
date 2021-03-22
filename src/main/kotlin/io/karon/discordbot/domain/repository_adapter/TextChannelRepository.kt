@@ -1,8 +1,8 @@
 package io.karon.discordbot.domain.repository_adapter
 
-import io.karon.discordbot.domain.output_port.GuildTextChannel
+import io.karon.discordbot.domain.output_port.GuildTextChannelPort
 
 interface TextChannelRepository {
-	fun getTextChannelByName(channelName: String): GuildTextChannel?
-	fun createPrivateTextChannel(channelName: String, categoryName: String, onSuccess: (GuildTextChannel) -> Unit)
+	fun getTextChannelByName(channelName: String): GuildTextChannelPort?
+	fun createPrivateTextChannel(channelName: String, categoryName: String, onSuccess: (GuildTextChannelPort) -> Unit)
 }

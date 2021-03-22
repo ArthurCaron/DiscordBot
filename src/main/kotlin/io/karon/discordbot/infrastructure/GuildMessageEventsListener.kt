@@ -1,13 +1,13 @@
 package io.karon.discordbot.infrastructure
 
-import io.karon.discordbot.domain.api.AnswerPongToPingRequest
-import io.karon.discordbot.domain.api.CreateDynamicPrivateChannelRequest
-import io.karon.discordbot.domain.api.ResetKnownTechMessageRequest
-import io.karon.discordbot.infrastructure.spring_input_adapter.AnswerPongToPingAdapter
-import io.karon.discordbot.infrastructure.spring_input_adapter.ResetKnownTechMessageAdapter
-import io.karon.discordbot.infrastructure.spring_input_adapter.SendPrivateMessageToEveryoneWhoTalksAdapter
+import io.karon.discordbot.domain.input_port.answer_pong_to_ping.AnswerPongToPingRequest
+import io.karon.discordbot.domain.input_port.dynamic_private_thread.CreateDynamicPrivateChannelRequest
+import io.karon.discordbot.domain.input_port.set_known_tech_with_reaction.ResetKnownTechMessageRequest
+import io.karon.discordbot.infrastructure.spring_input_adapter.answer_pong_to_ping.AnswerPongToPingAdapter
+import io.karon.discordbot.infrastructure.spring_input_adapter.set_known_tech_with_reaction.ResetKnownTechMessageAdapter
+import io.karon.discordbot.infrastructure.spring_input_adapter.send_private_message_when_someone_speaks.SendPrivateMessageToEveryoneWhoTalksAdapter
 import io.karon.discordbot.infrastructure.output_adapter.GuildTextChannelAdapter
-import io.karon.discordbot.infrastructure.spring_input_adapter.CreateDynamicPrivateChannelAdapter
+import io.karon.discordbot.infrastructure.spring_input_adapter.dynamic_private_thread.CreateDynamicPrivateChannelAdapter
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter

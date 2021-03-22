@@ -1,9 +1,8 @@
 package io.karon.discordbot.infrastructure.repository_adapter
 
-import io.karon.discordbot.domain.output_port.CustomEmote
+import io.karon.discordbot.domain.output_port.EmotePort
 import io.karon.discordbot.domain.repository_adapter.EmoteNamesToEmoteUnicodesRepository
-import io.karon.discordbot.infrastructure.output_adapter.CustomEmoteAdapter
-import net.dv8tion.jda.api.JDA
+import io.karon.discordbot.infrastructure.output_adapter.EmoteAdapter
 import org.springframework.stereotype.Component
 
 @Component
@@ -16,7 +15,7 @@ class EmoteNamesToEmoteUnicodesRepositoryAdapter : EmoteNamesToEmoteUnicodesRepo
 		"fire" to "\uD83D\uDD25",
 	)
 
-	override fun getCustomEmotes(vararg emoteNames: String): List<CustomEmote> {
+	override fun getCustomEmotes(vararg emoteNames: String): List<EmotePort> {
 		// Can't make this work
 //		val emoteById = jda.getEmoteById(772484959268896768)
 //		val emote2 = jda.getEmoteById("772484959268896768")
@@ -31,7 +30,7 @@ class EmoteNamesToEmoteUnicodesRepositoryAdapter : EmoteNamesToEmoteUnicodesRepo
 
 		return emoteNames.mapNotNull { name ->
 			(customEmotes[name] ?: standardEmotes[name])?.let { unicode ->
-				CustomEmoteAdapter(unicode)
+				EmoteAdapter(unicode)
 			}
 		}
 	}

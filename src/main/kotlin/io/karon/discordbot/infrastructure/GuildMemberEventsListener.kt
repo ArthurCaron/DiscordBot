@@ -1,7 +1,7 @@
 package io.karon.discordbot.infrastructure
 
-import io.karon.discordbot.domain.api.GreetNewMemberRequest
-import io.karon.discordbot.infrastructure.spring_input_adapter.GreetNewMemberAdapter
+import io.karon.discordbot.domain.input_port.greet_new_member.GreetNewMemberRequest
+import io.karon.discordbot.infrastructure.spring_input_adapter.greet_new_member.GreetNewMemberAdapter
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter

@@ -1,6 +1,6 @@
 package io.karon.discordbot.infrastructure.repository_adapter
 
-import io.karon.discordbot.domain.output_port.MemberRole
+import io.karon.discordbot.domain.output_port.MemberRolePort
 import io.karon.discordbot.domain.repository_adapter.EmoteNamesToRolesRepository
 import io.karon.discordbot.infrastructure.output_adapter.MemberRoleAdapter
 import net.dv8tion.jda.api.JDA
@@ -17,7 +17,7 @@ class EmoteNamesToRolesRepositoryAdapter(private val jda: JDA) : EmoteNamesToRol
 		"bot_tester" to 823285911261151332,
 	)
 
-	override fun getRole(emoteName: String): MemberRole? {
+	override fun getRole(emoteName: String): MemberRolePort? {
 //		return jda.getRolesByName("Java", false)
 //			.mapNotNull { MemberRoleAdapter(it) }
 //			.firstOrNull()

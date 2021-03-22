@@ -1,10 +1,10 @@
 package io.karon.discordbot.infrastructure
 
-import io.karon.discordbot.domain.api.JoinPrivateThreadOnReactionRequest
-import io.karon.discordbot.domain.api.UpdateRolesOnReactionRequest
-import io.karon.discordbot.infrastructure.output_adapter.MemberUserAdapter
-import io.karon.discordbot.infrastructure.spring_input_adapter.UpdateRolesOnReactionAdapter
-import io.karon.discordbot.infrastructure.spring_input_adapter.JoinPrivateThreadOnReactionAdapter
+import io.karon.discordbot.domain.input_port.dynamic_private_thread.JoinPrivateThreadOnReactionRequest
+import io.karon.discordbot.domain.input_port.set_known_tech_with_reaction.UpdateRolesOnReactionRequest
+import io.karon.discordbot.infrastructure.output_adapter.MemberAdapter
+import io.karon.discordbot.infrastructure.spring_input_adapter.set_known_tech_with_reaction.UpdateRolesOnReactionAdapter
+import io.karon.discordbot.infrastructure.spring_input_adapter.dynamic_private_thread.JoinPrivateThreadOnReactionAdapter
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent
 import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionRemoveEvent
@@ -37,14 +37,14 @@ final class GuildMessageReactionEventsListener(
 			UpdateRolesOnReactionRequest(
 				event.messageIdLong,
 				event.reactionEmote.name,
-				MemberUserAdapter(event.member)
+				MemberAdapter(event.member)
 			)
 		)
 
 		joinPrivateThreadOnReactionAdapter.execute(
 			JoinPrivateThreadOnReactionRequest(
 				event.messageIdLong,
-				MemberUserAdapter(event.member)
+				MemberAdapter(event.member)
 			)
 		)
 	}
@@ -54,7 +54,7 @@ final class GuildMessageReactionEventsListener(
 			UpdateRolesOnReactionRequest(
 				event.messageIdLong,
 				event.reactionEmote.name,
-				MemberUserAdapter(event.retrieveMember().complete())
+				MemberAdapter(event.retrieveMember().complete())
 			)
 		)
 	}
