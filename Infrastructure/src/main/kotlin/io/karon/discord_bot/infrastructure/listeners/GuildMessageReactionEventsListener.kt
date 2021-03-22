@@ -1,4 +1,4 @@
-package io.karon.discord_bot.infrastructure
+package io.karon.discord_bot.infrastructure.listeners
 
 import io.karon.discord_bot.domain.input_port.dynamic_private_thread.JoinPrivateThreadOnReactionRequest
 import io.karon.discord_bot.domain.input_port.set_known_tech_with_reaction.UpdateRolesOnReactionRequest

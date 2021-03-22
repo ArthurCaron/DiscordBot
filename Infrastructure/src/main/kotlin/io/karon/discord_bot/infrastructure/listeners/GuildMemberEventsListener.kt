@@ -1,4 +1,4 @@
-package io.karon.discord_bot.infrastructure
+package io.karon.discord_bot.infrastructure.listeners
 
 import io.karon.discord_bot.domain.input_port.greet_new_member.GreetNewMemberRequest
 import io.karon.discord_bot.infrastructure.spring_input_adapter.greet_new_member.GreetNewMemberAdapter

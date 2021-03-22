@@ -1,12 +1,12 @@
-package io.karon.discord_bot.infrastructure
+package io.karon.discord_bot.infrastructure.listeners
 
 import io.karon.discord_bot.domain.input_port.answer_pong_to_ping.AnswerPongToPingRequest
 import io.karon.discord_bot.domain.input_port.dynamic_private_thread.CreateDynamicPrivateChannelRequest
 import io.karon.discord_bot.domain.input_port.set_known_tech_with_reaction.ResetKnownTechMessageRequest
+import io.karon.discord_bot.infrastructure.output_adapter.GuildTextChannelAdapter
 import io.karon.discord_bot.infrastructure.spring_input_adapter.answer_pong_to_ping.AnswerPongToPingAdapter
 import io.karon.discord_bot.infrastructure.spring_input_adapter.set_known_tech_with_reaction.ResetKnownTechMessageAdapter
 import io.karon.discord_bot.infrastructure.spring_input_adapter.send_private_message_when_someone_speaks.SendPrivateMessageToEveryoneWhoTalksAdapter
-import io.karon.discord_bot.infrastructure.output_adapter.GuildTextChannelAdapter
 import io.karon.discord_bot.infrastructure.spring_input_adapter.dynamic_private_thread.CreateDynamicPrivateChannelAdapter
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent

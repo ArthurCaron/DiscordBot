@@ -1,4 +1,4 @@
-package io.karon.discord_bot
+package io.karon.discord_bot.infrastructure
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

@@ -1,8 +1,8 @@
-package io.karon.discord_bot
+package io.karon.discord_bot.infrastructure
 
-import io.karon.discord_bot.infrastructure.GuildMemberEventsListener
-import io.karon.discord_bot.infrastructure.GuildMessageEventsListener
-import io.karon.discord_bot.infrastructure.GuildMessageReactionEventsListener
+import io.karon.discord_bot.infrastructure.listeners.GuildMemberEventsListener
+import io.karon.discord_bot.infrastructure.listeners.GuildMessageEventsListener
+import io.karon.discord_bot.infrastructure.listeners.GuildMessageReactionEventsListener
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.entities.Activity
