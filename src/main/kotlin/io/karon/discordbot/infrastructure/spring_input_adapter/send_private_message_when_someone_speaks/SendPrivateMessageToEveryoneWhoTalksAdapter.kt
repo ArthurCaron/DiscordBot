@@ -1,8 +1,0 @@
-package io.karon.discordbot.infrastructure.spring_input_adapter.send_private_message_when_someone_speaks
-
-import io.karon.discordbot.domain.input_port.send_private_message_when_someone_speaks.SendPrivateMessageToEveryoneWhoTalks
-import io.karon.discordbot.domain.repository_adapter.UserRepository
-import org.springframework.stereotype.Component
-
-@Component
-class SendPrivateMessageToEveryoneWhoTalksAdapter(userRepository: UserRepository) : SendPrivateMessageToEveryoneWhoTalks(userRepository)

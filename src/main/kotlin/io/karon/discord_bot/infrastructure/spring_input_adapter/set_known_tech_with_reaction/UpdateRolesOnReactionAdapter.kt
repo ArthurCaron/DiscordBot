@@ -1,0 +1,12 @@
+package io.karon.discord_bot.infrastructure.spring_input_adapter.set_known_tech_with_reaction
+
+import io.karon.discord_bot.domain.input_port.set_known_tech_with_reaction.UpdateRolesOnReaction
+import io.karon.discord_bot.infrastructure.repository_adapter.EmoteNamesToRolesRepositoryAdapter
+import io.karon.discord_bot.infrastructure.repository_adapter.KnownTechMessageRepositoryAdapter
+import org.springframework.stereotype.Component
+
+@Component
+class UpdateRolesOnReactionAdapter(
+	knownTechMessageRepositoryAdapter: KnownTechMessageRepositoryAdapter,
+	emoteNamesToRolesRepositoryAdapter: EmoteNamesToRolesRepositoryAdapter
+) : UpdateRolesOnReaction(knownTechMessageRepositoryAdapter, emoteNamesToRolesRepositoryAdapter)
