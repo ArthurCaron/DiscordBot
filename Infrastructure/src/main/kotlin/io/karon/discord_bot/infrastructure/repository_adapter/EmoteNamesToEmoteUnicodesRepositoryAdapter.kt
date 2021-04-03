@@ -10,10 +10,12 @@ class EmoteNamesToEmoteUnicodesRepositoryAdapter : EmoteNamesToEmoteUnicodesRepo
 	private val customEmotes = mapOf(
 		"auyellow" to "auyellow:772484959268896768",
 		"augreen" to "augreen:772484955783168040",
-	)
+	).mapValues { EmoteAdapter(it.value) }
+
 	private val standardEmotes = mapOf(
 		"fire" to "\uD83D\uDD25",
-	)
+		"thread" to "\uD83E\uDDF5"
+	).mapValues { EmoteAdapter(it.value) }
 
 	override fun getCustomEmotes(vararg emoteNames: String): List<EmotePort> {
 		// Can't make this work
@@ -28,10 +30,6 @@ class EmoteNamesToEmoteUnicodesRepositoryAdapter : EmoteNamesToEmoteUnicodesRepo
 //			.map { CustomEmoteAdapter(it.name, it.id) }
 
 
-		return emoteNames.mapNotNull { name ->
-			(customEmotes[name] ?: standardEmotes[name])?.let { unicode ->
-				EmoteAdapter(unicode)
-			}
-		}
+		return emoteNames.mapNotNull { (customEmotes[it] ?: standardEmotes[it]) }
 	}
 }

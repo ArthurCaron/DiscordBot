@@ -12,10 +12,11 @@ class EmoteNamesToRolesRepositoryAdapter(private val jda: JDA) : EmoteNamesToRol
 		"auyellow" to "Java",
 		"augreen" to "bot_tester",
 	)
+
 	private val roleNamesToId = mapOf(
 		"Java" to 823285873109237810,
 		"bot_tester" to 823285911261151332,
-	)
+	).mapValues { MemberRoleAdapter(it.value) }
 
 	override fun getRole(emoteName: String): MemberRolePort? {
 //		return jda.getRolesByName("Java", false)
@@ -23,10 +24,6 @@ class EmoteNamesToRolesRepositoryAdapter(private val jda: JDA) : EmoteNamesToRol
 //			.firstOrNull()
 		// could then create role
 		// maybe somewhere else
-		return emoteNamesToRoleNames[emoteName]?.let { roleName ->
-			roleNamesToId[roleName]?.let { roleId ->
-				MemberRoleAdapter(roleId)
-			}
-		}
+		return emoteNamesToRoleNames[emoteName]?.let { roleNamesToId[it] }
 	}
 }

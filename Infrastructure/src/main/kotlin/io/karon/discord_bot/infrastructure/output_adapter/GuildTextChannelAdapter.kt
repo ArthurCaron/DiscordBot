@@ -1,8 +1,8 @@
 package io.karon.discord_bot.infrastructure.output_adapter
 
-import io.karon.discord_bot.domain.output_port.MessagePort
 import io.karon.discord_bot.domain.output_port.GuildTextChannelPort
 import io.karon.discord_bot.domain.output_port.MemberRolePort
+import io.karon.discord_bot.domain.output_port.MessagePort
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.TextChannel
 

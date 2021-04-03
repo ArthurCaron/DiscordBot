@@ -1,4 +1,4 @@
-package io.karon.discord_bot.infrastructure.spring_input_adapter.set_known_tech_with_reaction
+package io.karon.discord_bot.infrastructure.input_adapter.set_known_tech_with_reaction
 
 import io.karon.discord_bot.domain.input_port.set_known_tech_with_reaction.UpdateRolesOnReaction
 import io.karon.discord_bot.infrastructure.repository_adapter.EmoteNamesToRolesRepositoryAdapter

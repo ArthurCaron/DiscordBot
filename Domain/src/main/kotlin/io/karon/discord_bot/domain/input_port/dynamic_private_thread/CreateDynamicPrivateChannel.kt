@@ -3,6 +3,7 @@ package io.karon.discord_bot.domain.input_port.dynamic_private_thread
 import io.karon.discord_bot.domain.repository_adapter.MemberRoleRepository
 import io.karon.discord_bot.domain.repository_adapter.PrivateThreadRepository
 import io.karon.discord_bot.domain.repository_adapter.TextChannelRepository
+import kotlinx.coroutines.GlobalScope
 import kotlin.random.Random
 
 open class CreateDynamicPrivateChannel(
@@ -20,7 +21,7 @@ open class CreateDynamicPrivateChannel(
 			val channelName = "thread_$name"
 
 			// I really need coroutines to remove the callback hell
-			textChannelRepository.createPrivateTextChannel(channelName, categoryName) { guildTextChannel ->
+			textChannelRepository.createTextChannel(channelName, categoryName) { guildTextChannel ->
 				guildTextChannel.makePrivate()
 				memberRoleRepository.createRole(input.guildId, name) { memberRole ->
 					guildTextChannel.giveAccessToRole(memberRole)

@@ -1,10 +1,10 @@
 package io.karon.discord_bot.infrastructure.listeners
 
+import io.karon.discord_bot.domain.input_port.dynamic_private_thread.JoinPrivateThreadOnReaction
 import io.karon.discord_bot.domain.input_port.dynamic_private_thread.JoinPrivateThreadOnReactionRequest
+import io.karon.discord_bot.domain.input_port.set_known_tech_with_reaction.UpdateRolesOnReaction
 import io.karon.discord_bot.domain.input_port.set_known_tech_with_reaction.UpdateRolesOnReactionRequest
 import io.karon.discord_bot.infrastructure.output_adapter.MemberAdapter
-import io.karon.discord_bot.infrastructure.spring_input_adapter.set_known_tech_with_reaction.UpdateRolesOnReactionAdapter
-import io.karon.discord_bot.infrastructure.spring_input_adapter.dynamic_private_thread.JoinPrivateThreadOnReactionAdapter
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent
 import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionRemoveEvent
@@ -16,8 +16,8 @@ import java.util.*
 @Component
 final class GuildMessageReactionEventsListener(
 	jda: JDA,
-	private val updateRolesOnReactionAdapter: UpdateRolesOnReactionAdapter,
-	private val joinPrivateThreadOnReactionAdapter: JoinPrivateThreadOnReactionAdapter
+	private val updateRolesOnReaction: UpdateRolesOnReaction,
+	private val joinPrivateThreadOnReaction: JoinPrivateThreadOnReaction
 ) : ListenerAdapter() {
 	companion object {
 		fun getGatewayIntents(): EnumSet<GatewayIntent> {
@@ -33,7 +33,7 @@ final class GuildMessageReactionEventsListener(
 	}
 
 	override fun onGuildMessageReactionAdd(event: GuildMessageReactionAddEvent) {
-		updateRolesOnReactionAdapter.reactionAdded(
+		updateRolesOnReaction.reactionAdded(
 			UpdateRolesOnReactionRequest(
 				event.messageIdLong,
 				event.reactionEmote.name,
@@ -41,7 +41,7 @@ final class GuildMessageReactionEventsListener(
 			)
 		)
 
-		joinPrivateThreadOnReactionAdapter.execute(
+		joinPrivateThreadOnReaction.execute(
 			JoinPrivateThreadOnReactionRequest(
 				event.messageIdLong,
 				MemberAdapter(event.member)
@@ -50,7 +50,7 @@ final class GuildMessageReactionEventsListener(
 	}
 
 	override fun onGuildMessageReactionRemove(event: GuildMessageReactionRemoveEvent) {
-		updateRolesOnReactionAdapter.reactionRemoved(
+		updateRolesOnReaction.reactionRemoved(
 			UpdateRolesOnReactionRequest(
 				event.messageIdLong,
 				event.reactionEmote.name,

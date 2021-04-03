@@ -14,7 +14,7 @@ class TextChannelRepositoryAdapter(private val jda: JDA) : TextChannelRepository
 		}
 	}
 
-	override fun createPrivateTextChannel(channelName: String, categoryName: String, onSuccess: (GuildTextChannelPort) -> Unit) {
+	override fun createTextChannel(channelName: String, categoryName: String, onSuccess: (GuildTextChannelPort) -> Unit) {
 		jda.getCategoriesByName(categoryName, false).firstOrNull()
 			?.createTextChannel(channelName)
 			?.queue {

@@ -1,7 +1,7 @@
 package io.karon.discord_bot.infrastructure.listeners
 
+import io.karon.discord_bot.domain.input_port.greet_new_member.GreetNewMember
 import io.karon.discord_bot.domain.input_port.greet_new_member.GreetNewMemberRequest
-import io.karon.discord_bot.infrastructure.spring_input_adapter.greet_new_member.GreetNewMemberAdapter
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
@@ -12,7 +12,7 @@ import java.util.*
 @Component
 final class GuildMemberEventsListener(
 	jda: JDA,
-	private val greetNewMemberAdapter: GreetNewMemberAdapter
+	private val greetNewMember: GreetNewMember
 ) : ListenerAdapter() {
 	companion object {
 		fun getGatewayIntents(): EnumSet<GatewayIntent> {
@@ -27,7 +27,7 @@ final class GuildMemberEventsListener(
 	}
 
 	override fun onGuildMemberJoin(event: GuildMemberJoinEvent) {
-		greetNewMemberAdapter.execute(
+		greetNewMember.execute(
 			GreetNewMemberRequest(
 				event.member.user.asMention
 			)

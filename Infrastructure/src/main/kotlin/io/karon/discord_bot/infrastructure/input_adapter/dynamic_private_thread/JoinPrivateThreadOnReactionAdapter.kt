@@ -1,4 +1,4 @@
-package io.karon.discord_bot.infrastructure.spring_input_adapter.dynamic_private_thread
+package io.karon.discord_bot.infrastructure.input_adapter.dynamic_private_thread
 
 import io.karon.discord_bot.domain.input_port.dynamic_private_thread.JoinPrivateThreadOnReaction
 import io.karon.discord_bot.infrastructure.repository_adapter.PrivateThreadRepositoryAdapter

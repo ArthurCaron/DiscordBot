@@ -4,5 +4,5 @@ import io.karon.discord_bot.domain.output_port.GuildTextChannelPort
 
 interface TextChannelRepository {
 	fun getTextChannelByName(channelName: String): GuildTextChannelPort?
-	fun createPrivateTextChannel(channelName: String, categoryName: String, onSuccess: (GuildTextChannelPort) -> Unit)
+	fun createTextChannel(channelName: String, categoryName: String, onSuccess: (GuildTextChannelPort) -> Unit)
 }
