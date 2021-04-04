@@ -1,8 +1,7 @@
 package io.karon.discord_bot.domain.output_port
 
 interface GuildTextChannelPort {
-	fun sendMessage(message: String)
-	fun sendMessage(message: String, onSuccess: (MessagePort) -> Unit)
+	suspend fun sendMessage(message: String): MessagePort?
 	fun asMention(): String
 	fun makePrivate()
 	fun giveAccessToRole(memberRole: MemberRolePort)

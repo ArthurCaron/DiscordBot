@@ -1,7 +1,7 @@
 package io.karon.discord_bot.infrastructure.repository_adapter
 
 import io.karon.discord_bot.domain.output_port.EmotePort
-import io.karon.discord_bot.domain.repository_adapter.EmoteNamesToEmoteUnicodesRepository
+import io.karon.discord_bot.domain.repository_port.EmoteNamesToEmoteUnicodesRepository
 import io.karon.discord_bot.infrastructure.output_adapter.EmoteAdapter
 import org.springframework.stereotype.Component
 

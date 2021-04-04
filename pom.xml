@@ -37,7 +37,24 @@
 		<dependency>
 			<groupId>org.jetbrains.kotlinx</groupId>
 			<artifactId>kotlinx-coroutines-core</artifactId>
-			<version>1.4.2</version>
+		</dependency>
+
+		<!-- Tests -->
+		<dependency>
+			<groupId>org.jetbrains.kotlinx</groupId>
+			<artifactId>kotlinx-coroutines-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.mockk</groupId>
+			<artifactId>mockk</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
@@ -67,7 +84,6 @@
 				<configuration>
 					<args>
 						<arg>-Xjsr305=strict</arg>
-						<arg>-Xcoroutines=enable</arg>
 					</args>
 					<compilerPlugins>
 						<plugin>spring</plugin>

@@ -1,4 +1,4 @@
-package io.karon.discord_bot.domain.repository_adapter
+package io.karon.discord_bot.domain.repository_port
 
 import io.karon.discord_bot.domain.output_port.EmotePort
 

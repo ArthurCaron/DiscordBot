@@ -1,7 +1,7 @@
 package io.karon.discord_bot.infrastructure.repository_adapter
 
 import io.karon.discord_bot.domain.output_port.MessagePort
-import io.karon.discord_bot.domain.repository_adapter.KnownTechMessageRepository
+import io.karon.discord_bot.domain.repository_port.KnownTechMessageRepository
 import org.springframework.stereotype.Component
 
 @Component

@@ -1,7 +1,7 @@
 package io.karon.discord_bot.infrastructure.repository_adapter
 
 import io.karon.discord_bot.domain.output_port.MemberRolePort
-import io.karon.discord_bot.domain.repository_adapter.EmoteNamesToRolesRepository
+import io.karon.discord_bot.domain.repository_port.EmoteNamesToRolesRepository
 import io.karon.discord_bot.infrastructure.output_adapter.MemberRoleAdapter
 import net.dv8tion.jda.api.JDA
 import org.springframework.stereotype.Component

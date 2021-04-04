@@ -1,10 +1,9 @@
 package io.karon.discord_bot.infrastructure.listeners
 
 import io.karon.discord_bot.domain.input_port.dynamic_private_thread.JoinPrivateThreadOnReaction
-import io.karon.discord_bot.domain.input_port.dynamic_private_thread.JoinPrivateThreadOnReactionRequest
 import io.karon.discord_bot.domain.input_port.set_known_tech_with_reaction.UpdateRolesOnReaction
-import io.karon.discord_bot.domain.input_port.set_known_tech_with_reaction.UpdateRolesOnReactionRequest
 import io.karon.discord_bot.infrastructure.output_adapter.MemberAdapter
+import kotlinx.coroutines.runBlocking
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent
 import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionRemoveEvent
@@ -32,9 +31,9 @@ final class GuildMessageReactionEventsListener(
 		jda.addEventListener(this)
 	}
 
-	override fun onGuildMessageReactionAdd(event: GuildMessageReactionAddEvent) {
+	override fun onGuildMessageReactionAdd(event: GuildMessageReactionAddEvent) = runBlocking {
 		updateRolesOnReaction.reactionAdded(
-			UpdateRolesOnReactionRequest(
+			UpdateRolesOnReaction.Request(
 				event.messageIdLong,
 				event.reactionEmote.name,
 				MemberAdapter(event.member)
@@ -42,16 +41,16 @@ final class GuildMessageReactionEventsListener(
 		)
 
 		joinPrivateThreadOnReaction.execute(
-			JoinPrivateThreadOnReactionRequest(
+			JoinPrivateThreadOnReaction.Request(
 				event.messageIdLong,
 				MemberAdapter(event.member)
 			)
 		)
 	}
 
-	override fun onGuildMessageReactionRemove(event: GuildMessageReactionRemoveEvent) {
+	override fun onGuildMessageReactionRemove(event: GuildMessageReactionRemoveEvent) = runBlocking {
 		updateRolesOnReaction.reactionRemoved(
-			UpdateRolesOnReactionRequest(
+			UpdateRolesOnReaction.Request(
 				event.messageIdLong,
 				event.reactionEmote.name,
 				MemberAdapter(event.retrieveMember().complete())

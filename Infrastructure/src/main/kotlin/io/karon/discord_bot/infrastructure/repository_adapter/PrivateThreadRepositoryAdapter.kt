@@ -1,7 +1,7 @@
 package io.karon.discord_bot.infrastructure.repository_adapter
 
 import io.karon.discord_bot.domain.input_port.dynamic_private_thread.PrivateThread
-import io.karon.discord_bot.domain.repository_adapter.PrivateThreadRepository
+import io.karon.discord_bot.domain.repository_port.PrivateThreadRepository
 import org.springframework.stereotype.Component
 
 @Component

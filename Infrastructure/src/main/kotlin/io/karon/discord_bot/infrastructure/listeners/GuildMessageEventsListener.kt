@@ -1,12 +1,10 @@
 package io.karon.discord_bot.infrastructure.listeners
 
 import io.karon.discord_bot.domain.input_port.answer_pong_to_ping.AnswerPongToPing
-import io.karon.discord_bot.domain.input_port.answer_pong_to_ping.AnswerPongToPingRequest
 import io.karon.discord_bot.domain.input_port.dynamic_private_thread.CreateDynamicPrivateChannel
-import io.karon.discord_bot.domain.input_port.dynamic_private_thread.CreateDynamicPrivateChannelRequest
 import io.karon.discord_bot.domain.input_port.set_known_tech_with_reaction.ResetKnownTechMessage
-import io.karon.discord_bot.domain.input_port.set_known_tech_with_reaction.ResetKnownTechMessageRequest
 import io.karon.discord_bot.infrastructure.output_adapter.GuildTextChannelAdapter
+import kotlinx.coroutines.runBlocking
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
@@ -33,9 +31,9 @@ final class GuildMessageEventsListener(
 		jda.addEventListener(this)
 	}
 
-	override fun onGuildMessageReceived(event: GuildMessageReceivedEvent) {
+	override fun onGuildMessageReceived(event: GuildMessageReceivedEvent) = runBlocking {
 		answerPongToPing.execute(
-			AnswerPongToPingRequest(
+			AnswerPongToPing.Request(
 				event.author.isBot,
 				event.message.contentRaw,
 				GuildTextChannelAdapter(event.channel)
@@ -43,7 +41,7 @@ final class GuildMessageEventsListener(
 		)
 
 		resetKnownTechMessage.execute(
-			ResetKnownTechMessageRequest(
+			ResetKnownTechMessage.Request(
 				event.author.isBot,
 				event.message.contentRaw,
 				GuildTextChannelAdapter(event.channel)
@@ -51,7 +49,7 @@ final class GuildMessageEventsListener(
 		)
 
 		createDynamicPrivateChannel.execute(
-			CreateDynamicPrivateChannelRequest(
+			CreateDynamicPrivateChannel.Request(
 				event.author.isBot,
 				event.message.contentRaw,
 				event.guild.idLong,

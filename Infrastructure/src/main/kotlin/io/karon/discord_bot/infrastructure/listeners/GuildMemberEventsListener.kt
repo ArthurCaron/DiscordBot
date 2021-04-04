@@ -1,7 +1,7 @@
 package io.karon.discord_bot.infrastructure.listeners
 
 import io.karon.discord_bot.domain.input_port.greet_new_member.GreetNewMember
-import io.karon.discord_bot.domain.input_port.greet_new_member.GreetNewMemberRequest
+import kotlinx.coroutines.runBlocking
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
@@ -26,9 +26,9 @@ final class GuildMemberEventsListener(
 		jda.addEventListener(this)
 	}
 
-	override fun onGuildMemberJoin(event: GuildMemberJoinEvent) {
+	override fun onGuildMemberJoin(event: GuildMemberJoinEvent) = runBlocking {
 		greetNewMember.execute(
-			GreetNewMemberRequest(
+			GreetNewMember.Request(
 				event.member.user.asMention
 			)
 		)
