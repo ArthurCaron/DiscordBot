@@ -3,14 +3,14 @@ package io.karon.discord_bot.infrastructure.output_adapter
 import io.karon.discord_bot.domain.output_port.GuildTextChannelPort
 import io.karon.discord_bot.domain.output_port.MemberRolePort
 import io.karon.discord_bot.domain.output_port.MessagePort
-import io.karon.discord_bot.infrastructure.repository_adapter.awaitCallback
+import io.karon.discord_bot.infrastructure.utils.awaitCancellable
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.TextChannel
 
 class GuildTextChannelAdapter(private val textChannel: TextChannel) : GuildTextChannelPort {
 	override suspend fun sendMessage(message: String): MessagePort? {
 		return textChannel.sendMessage(message)
-			.awaitCallback()
+			.awaitCancellable()
 			?.let { MessageAdapter(it) }
 	}
 
